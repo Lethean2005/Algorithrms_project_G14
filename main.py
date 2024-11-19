@@ -1,7 +1,9 @@
 import telebot
+import random
+import requests
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from telebot.apihelper import ApiTelegramException
-import requests
+
 
 # Replace this with your Bot Token from BotFather
 BOT_TOKEN = "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI"
@@ -127,29 +129,58 @@ def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
 
+# Command: /info
+@bot.message_handler(commands=["info"])
+def send_info(message):
+    bot.reply_to(
+        message,
+        "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia. Bots can simulate conversations, perform predefined tasks, and offer user-centric solutions seamlessly within Telegram."
+    )
 
-# Fallback message handler for any question
-@bot.message_handler(func=lambda message: True)
-def handle_question(message):
-    topic = determine_topic(message)
-    if topic:
-        # Respond with a predefined answer
-        bot.send_message(message.chat.id, RESPONSES[topic])
+# Command: /status
+@bot.message_handler(commands=["status"])
+def send_status(message):
+    bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
+
+# Command: /data
+@bot.message_handler(commands=["data"])
+def send_data(message):
+    data = [
+        """
+        1. User Data 
+        2. Interaction Data 
+        3. Bot Data 
+        4. Group and Channel Data (if the bot operates in groups or channels) 
+        5. Analytics and Performance Data 
+        """
+    ]
+    bot.reply_to(message, random.choice(data))
+
+# Command: /weather
+@bot.message_handler(commands=["weather"])
+def send_weather(message):
+    # Default city or user-provided city
+    city = "Phnom Penh"  # Default city
+    if len(message.text.split()) > 1:
+        city = " ".join(message.text.split()[1:])  # Extract city from command
+
+    api_key = "7f59948b973042e8bfd22815241211"  # Your WeatherAPI key
+    url = f"https://api.weatherapi.com/v1/current.json?key={api_key}&q={city}"
+
+    response = requests.get(url)
+    data = response.json()
+
+    # Check if the request was successful
+    if "error" not in data:
+        weather_data = (
+            f"Weather in {city}:\n"
+            f"Temperature: {data['current']['temp_c']}°C\n"
+            f"Description: {data['current']['condition']['text']}"
+        )
     else:
-        # Respond with a generic message and provide a helpful link
-        bot.send_message(
-            message.chat.id,
-            "I'm sorry, I can currently only help with HTML, CSS, Python, JavaScript, Databases, Algorithms, and general knowledge. Feel free to ask me anything, and I'll try my best to help!"
-        )
+        weather_data = "Sorry, I couldn't fetch the weather data. Please check the city name."
 
-
-        # Provide a link to a general help document
-        help_link = "https://www.w3schools.com/"  # Replace with your actual link
-        bot.send_message(
-            message.chat.id,
-            f"Download the guide here: [General Help Guide]({help_link})",
-            parse_mode="Markdown"
-        )
+    bot.reply_to(message, weather_data)
 
 # Start polling
 if __name__ == "__main__":
