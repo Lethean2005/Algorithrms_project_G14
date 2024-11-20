@@ -4,7 +4,7 @@ from telebot.apihelper import ApiTelegramException
 import requests
 
 # Replace this with your Bot Token from BotFather
-BOT_TOKEN = "7305253116:AAHenNjQKny-joQ2BB5xfvmHuMjyL1bsngo"
+BOT_TOKEN = "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI"
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Predefined responses for topics
@@ -43,21 +43,29 @@ def determine_topic(message):
 def start(message):
     # Create a reply markup with buttons
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
-    html_button = KeyboardButton("HTML")
-    css_button = KeyboardButton("CSS")
-    python_button = KeyboardButton("Python")
-    javascript_button = KeyboardButton("JavaScript")
-    databases_button = KeyboardButton("Databases")
-    algorithms_button = KeyboardButton("Algorithms")
-    help_button = KeyboardButton("More")
-    markup.add(html_button, css_button, python_button, javascript_button, databases_button, algorithms_button, help_button)
 
-    # Send welcome message with buttons
+    # Add emojis to visually enhance buttons
+    html_button = KeyboardButton("🖍 HTML")
+    css_button = KeyboardButton("🎨 CSS")
+    python_button = KeyboardButton("🐍 Python")
+    javascript_button = KeyboardButton("📜 JavaScript")
+    databases_button = KeyboardButton("💾 Databases")
+    algorithms_button = KeyboardButton("🔣 Algorithms")
+    help_button = KeyboardButton("❓ More")
+
+    markup.add(
+        html_button, css_button, python_button,
+        javascript_button, databases_button, algorithms_button,
+        help_button
+    )
+
+    # Send message with enhanced buttons 
     bot.send_message(
         message.chat.id,
-        "Welcome! Select a topic to ask about:\n- HTML\n- CSS\n- Python (Tkinter)\n- JavaScript\n- Databases\n- Algorithms\nOr type your question, and I'll do my best to help!",
+        "Welcome! Select a topic to ask about:\n- HTML\n- CSS\n- Python\n- JavaScript\n- Databases\n- Algorithms\nOr type your question, and I'll do my best to help!",
         reply_markup=markup,
     )
+
 
 # Message handler for topic selection
 @bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More"])
