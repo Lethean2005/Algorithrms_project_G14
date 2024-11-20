@@ -4,7 +4,6 @@ import requests
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from telebot.apihelper import ApiTelegramException
 
-
 # Replace this with your Bot Token from BotFather
 BOT_TOKEN = "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI"
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -19,44 +18,44 @@ RESPONSES = {
     "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
     "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
     "structure": """<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Title</title>
-</head>
-<body>
-    <!-- Page content goes here -->
-</body>
-</html>
-""",
-"table": """<table>
-<thead>
-    <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-        <th>Header 3</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Row 1, Column 1</td>
-        <td>Row 1, Column 2</td>
-        <td>Row 1, Column 3</td>
-    </tr>
-    <tr>
-        <td>Row 2, Column 1</td>
-        <td>Row 2, Column 2</td>
-        <td>Row 2, Column 3</td>
-    </tr>
-</tbody>
-</table>
- """,
-    "More": """Here are the available commands:
-- /start - Start the bot
-- /info - Information about the bot
-- /status - Check the bot's status
-- /data - Get a random data
-- /weather - Check weather
-"""
+    <html>
+    <head>
+        <title>Page Title</title>
+    </head>
+    <body>
+        <!-- Page content goes here -->
+    </body>
+    </html>
+    """,
+    "table": """<table>
+    <thead>
+        <tr>
+            <th>Header 1</th>
+            <th>Header 2</th>
+            <th>Header 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Row 1, Column 1</td>
+            <td>Row 1, Column 2</td>
+            <td>Row 1, Column 3</td>
+        </tr>
+        <tr>
+            <td>Row 2, Column 1</td>
+            <td>Row 2, Column 2</td>
+            <td>Row 2, Column 3</td>
+        </tr>
+    </tbody>
+    </table>
+    """,
+        "More": """Here are the available commands:
+    - /start - Start the bot
+    - /info - Information about the bot
+    - /status - Check the bot's status
+    - /data - Get a random data
+    - /weather - Check weather
+    """
     
 }
 
@@ -129,7 +128,7 @@ def handle_topic_selection(message):
         bot.send_message(message.chat.id, RESPONSES["More"])
     else:
         bot.send_message(message.chat.id, RESPONSES[topic])
-
+        
 
 #Message for topic selecion 2
 @bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "More"])
