@@ -1,3 +1,4 @@
+import random
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from telebot.apihelper import ApiTelegramException
@@ -16,6 +17,45 @@ RESPONSES = {
     "javascript": "JavaScript is a programming language used for creating interactive effects within web browsers. How can I help with JavaScript?",
     "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
     "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
+    "structure": """<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+    <!-- Page content goes here -->
+</body>
+</html>
+""",
+"table": """<table>
+<thead>
+    <tr>
+        <th>Header 1</th>
+        <th>Header 2</th>
+        <th>Header 3</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Row 1, Column 1</td>
+        <td>Row 1, Column 2</td>
+        <td>Row 1, Column 3</td>
+    </tr>
+    <tr>
+        <td>Row 2, Column 1</td>
+        <td>Row 2, Column 2</td>
+        <td>Row 2, Column 3</td>
+    </tr>
+</tbody>
+</table>
+ """,
+  "more": """Here are the available commands:
+- /start - Start the bot
+- /info - Information about the bot
+- /status - Check the bot's status
+- /data - Get a random data
+- /weather - Check weather
+"""
     
 }
 
@@ -34,9 +74,21 @@ def determine_topic(message):
         return "databases"
     elif "algorithm" in text or "algorithms" in text:
         return "algorithms"
+    elif "more" in text:
+        return "more"
     elif "hello" in text:
         return "hello"
     return None  # No specific topic detected
+
+#def_second_function for HTML
+
+def condiction_2(message2):
+    text = message2.text.lower()
+    if "table" in text:
+        return "table"
+    elif "structure" in text:
+        return "structure"
+    return None
 
 # Start command handler
 @bot.message_handler(commands=["start"])
@@ -59,6 +111,7 @@ def start(message):
         help_button
     )
 
+
     # Send message with enhanced buttons 
     bot.send_message(
         message.chat.id,
@@ -76,6 +129,66 @@ def handle_topic_selection(message):
     else:
         bot.send_message(message.chat.id, RESPONSES[topic])
 
+
+#Message for topic selecion 2
+@bot.message_handler(func=lambda message2: message2.text in ["table", "structure"])
+def handle_topic_selection(message2):
+    topic = message2.text
+    bot.send_message(message2.chat.id, RESPONSES[topic])
+
+# Command: /info
+@bot.message_handler(commands=["info"])
+def send_info(message):
+    bot.reply_to(
+        message,
+        "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia. Bots can simulate conversations, perform predefined tasks, and offer user-centric solutions seamlessly within Telegram."
+    )
+
+# Command: /status
+@bot.message_handler(commands=["status"])
+def send_status(message):
+    bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
+
+# Command: /data
+@bot.message_handler(commands=["data"])
+def send_data(message):
+    data = [
+        """
+        1. User Data 
+        2. Interaction Data 
+        3. Bot Data 
+        4. Group and Channel Data (if the bot operates in groups or channels) 
+        5. Analytics and Performance Data 
+        """
+    ]
+    bot.reply_to(message, random.choice(data))
+
+# Command: /weather
+@bot.message_handler(commands=["weather"])
+def send_weather(message):
+    # Default city or user-provided city
+    city = "Phnom Penh"  # Default city
+    if len(message.text.split()) > 1:
+        city = " ".join(message.text.split()[1:])  # Extract city from command
+
+    api_key = "7f59948b973042e8bfd22815241211"  # Your WeatherAPI key
+    url = f"https://api.weatherapi.com/v1/current.json?key={api_key}&q={city}"
+
+    response = requests.get(url)
+    data = response.json()
+
+    # Check if the request was successful
+    if "error" not in data:
+        weather_data = (
+            f"Weather in {city}:\n"
+            f"Temperature: {data['current']['temp_c']}°C\n"
+            f"Description: {data['current']['condition']['text']}"
+        )
+    else:
+        weather_data = "Sorry, I couldn't fetch the weather data. Please check the city name."
+
+    bot.reply_to(message, weather_data)
+    
 # Fallback message handler for any question
 @bot.message_handler(func=lambda message: True)
 def handle_question(message):
