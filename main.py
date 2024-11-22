@@ -4,7 +4,7 @@ from telebot.apihelper import ApiTelegramException
 import requests
 
 # Replace this with your Bot Token from BotFather
-BOT_TOKEN = "7305253116:AAHenNjQKny-joQ2BB5xfvmHuMjyL1bsngo"
+BOT_TOKEN = "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI"
 bot = telebot.TeleBot(BOT_TOKEN)
 
 # Predefined responses for topics
@@ -16,7 +16,13 @@ RESPONSES = {
     "javascript": "JavaScript is a programming language used for creating interactive effects within web browsers. How can I help with JavaScript?",
     "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
     "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
-    
+    "what is flexbox": 
+        "CSS Flexbox is a layout model that allows you to design responsive web pages easily. "
+        "It enables you to align and distribute space among items in a container, even when their sizes are unknown or dynamic.",
+    "what is grid":  "CSS Grid is a powerful layout system for creating two-dimensional layouts. "
+        "It allows you to divide a page into rows and columns and place items within the grid. It's especially useful for complex web layouts.",
+    "what is gap": "The gap property in CSS is used to specify the space between items in a container, typically in a flexbox or grid layout."
+            "It is a shorthand for defining the spacing between rows and columns in a grid or between flex items.",
 }
 
 # Helper function to determine the topic
@@ -36,6 +42,12 @@ def determine_topic(message):
         return "algorithms"
     elif "hello" in text:
         return "hello"
+    elif "what is flexbpox" in text:
+        return "what is flexbox"
+    elif "what is grid" in text:
+        return "what is grid"
+    elif "what is gap" in text:
+        return "what is gap"
     return None  # No specific topic detected
 
 # Start command handler
@@ -60,7 +72,7 @@ def start(message):
     )
 
 # Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More"])
+@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","what is flexbox","what is grid","what is gap"])
 def handle_topic_selection(message):
     topic = message.text.lower()
     if topic == "help":
