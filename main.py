@@ -23,6 +23,14 @@ RESPONSES = {
         "It allows you to divide a page into rows and columns and place items within the grid. It's especially useful for complex web layouts.",
     "what is gap": "The gap property in CSS is used to specify the space between items in a container, typically in a flexbox or grid layout."
             "It is a shorthand for defining the spacing between rows and columns in a grid or between flex items.",
+    "class":"class (.)  Can be applied to multiple elements.",
+    "id":"ID (#): Must be unique to one element.",
+    
+   "rule css" : """A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:
+
+            1.Selector: Specifies which HTML elements the rule applies to.
+
+            2.Declaration Block: Contains one or more property-value pairs that define the style.""",
 }
 
 # Helper function to determine the topic
@@ -48,6 +56,13 @@ def determine_topic(message):
         return "what is grid"
     elif "what is gap" in text:
         return "what is gap"
+    elif "class" in text :
+        return "class"
+    elif "id" in text :
+        return "id"
+    elif "rule css" in text :
+        return "rule css"
+
     return None  # No specific topic detected
 
 # Start command handler
@@ -72,7 +87,7 @@ def start(message):
     )
 
 # Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","what is flexbox","what is grid","what is gap"])
+@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","what is flexbox","what is grid","what is gap","class","id","rule css"])
 def handle_topic_selection(message):
     topic = message.text.lower()
     if topic == "help":
