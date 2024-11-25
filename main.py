@@ -113,7 +113,11 @@ def determine_topic(message):
         return "more"
     elif "hello" in text:
         return "hello"
-    elif " flexbpox" in text:
+
+#def_second_function for css
+def condiction_1 (message1):
+    text = message1.text.lower()
+    if " flexbpox" in text:
         return "flexbox"
     elif " grid" in text:
         return " grid"
@@ -172,7 +176,7 @@ def start(message):
 
 
 # Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","flexbox","grid","gap","class","id","rule css"])
+@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More"])
 def handle_topic_selection(message):
     topic = message.text.lower()
     if topic == "help":
@@ -186,6 +190,13 @@ def handle_topic_selection(message):
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
+
+
+@bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","rule css"])
+def handle_topic_selection(message1):
+    topic = message1.text
+    bot.send_message(message1.chat.id, RESPONSES[topic])
+
 
 # Command: /info
 @bot.message_handler(commands=["info"])
