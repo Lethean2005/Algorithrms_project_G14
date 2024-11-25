@@ -114,7 +114,7 @@ def determine_topic(message):
     elif "hello" in text:
         return "hello"
 
-
+#def_second_function for css
 def condiction_1 (message1):
     text = message1.text.lower()
     if " flexbpox" in text:
