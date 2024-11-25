@@ -17,6 +17,11 @@ RESPONSES = {
     "javascript": "JavaScript is a programming language used for creating interactive effects within web browsers. How can I help with JavaScript?",
     "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
     "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
+    "element": """An HTML element is defined by a start tag, some content, and an end tag:
+
+<tagname> Content goes here... </tagname>
+The HTML element is everything from the start tag to the end tag:
+""",
     "structure": """<!DOCTYPE html>
 <html>
 <head>
@@ -55,9 +60,25 @@ RESPONSES = {
 - /status - Check the bot's status
 - /data - Get a random data
 - /weather - Check weather
+""",
+"code block":"""Ordered list:
+html
+<pre>
+<ol>
+  <li>Item 1</li>
+  <li>Item 2</li>
+</ol>
+Unordered list:
+html
+<ul>
+  <li>Item A</li>
+  <li>Item B</li>
+</ul>
+</pre>
 """
     
 }
+
 
 # Helper function to determine the topic
 def determine_topic(message):
@@ -88,6 +109,10 @@ def condiction_2(message2):
         return "table"
     elif "structure" in text:
         return "structure"
+    elif "element" in text:
+        return "html element"
+    elif "code block" in text:
+        return "code block"
     return None
 
 # Start command handler
@@ -131,7 +156,7 @@ def handle_topic_selection(message):
 
 
 #Message for topic selecion 2
-@bot.message_handler(func=lambda message2: message2.text in ["table", "structure"])
+@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block"])
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
