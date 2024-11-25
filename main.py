@@ -68,6 +68,7 @@ The HTML element is everything from the start tag to the end tag:
 - /info - Information about the bot
 - /status - Check the bot's status
 - /data - Get a random data
+- /video - watch video
 - /weather - Check weather
 """,
 "code block":"""Ordered list:
@@ -225,6 +226,10 @@ def send_data(message):
         """
     ]
     bot.reply_to(message, random.choice(data))
+
+@bot.message_handler(commands=["video"])
+def send_status(message):
+    bot.reply_to(message, "https://www.youtube.com/playlist?list=PL938URpgZ7qYQrfk-HHvzYJMsd576-P66")
 
 # Command: /weather
 @bot.message_handler(commands=["weather"])
