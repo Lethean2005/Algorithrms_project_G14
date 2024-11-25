@@ -239,6 +239,7 @@ def send_weather(message):
     response = requests.get(url)
     data = response.json()
 
+
     # Check if the request was successful
     if "error" not in data:
         weather_data = (
@@ -250,7 +251,7 @@ def send_weather(message):
         weather_data = "Sorry, I couldn't fetch the weather data. Please check the city name."
 
     bot.reply_to(message, weather_data)
-    
+
 # Fallback message handler for any question
 @bot.message_handler(func=lambda message: True)
 def handle_question(message):
