@@ -163,7 +163,6 @@ def start(message):
         help_button
     )
 
-
     # Send message with enhanced buttons 
     bot.send_message(
         message.chat.id,
