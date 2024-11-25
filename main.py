@@ -17,12 +17,12 @@ RESPONSES = {
     "javascript": "JavaScript is a programming language used for creating interactive effects within web browsers. How can I help with JavaScript?",
     "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
     "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
-    "what is flexbox": 
+    "flexbox": 
         "CSS Flexbox is a layout model that allows you to design responsive web pages easily. "
         "It enables you to align and distribute space among items in a container, even when their sizes are unknown or dynamic.",
-    "what is grid":  "CSS Grid is a powerful layout system for creating two-dimensional layouts. "
+    "grid":  "CSS Grid is a powerful layout system for creating two-dimensional layouts. "
         "It allows you to divide a page into rows and columns and place items within the grid. It's especially useful for complex web layouts.",
-    "what is gap": "The gap property in CSS is used to specify the space between items in a container, typically in a flexbox or grid layout."
+    "gap": "The gap property in CSS is used to specify the space between items in a container, typically in a flexbox or grid layout."
             "It is a shorthand for defining the spacing between rows and columns in a grid or between flex items.",
     "class":"class (.)  Can be applied to multiple elements.",
     "id":"ID (#): Must be unique to one element.",
@@ -113,12 +113,12 @@ def determine_topic(message):
         return "more"
     elif "hello" in text:
         return "hello"
-    elif "what is flexbpox" in text:
-        return "what is flexbox"
-    elif "what is grid" in text:
-        return "what is grid"
+    elif " flexbpox" in text:
+        return "flexbox"
+    elif " grid" in text:
+        return " grid"
     elif "what is gap" in text:
-        return "what is gap"
+        return " gap"
     elif "class" in text :
         return "class"
     elif "id" in text :
@@ -173,7 +173,7 @@ def start(message):
 
 
 # Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","what is flexbox","what is grid","what is gap","class","id","rule css"])
+@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","flexbox","grid","gap","class","id","rule css"])
 def handle_topic_selection(message):
     topic = message.text.lower()
     if topic == "help":
