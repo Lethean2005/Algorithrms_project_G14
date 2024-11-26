@@ -37,17 +37,19 @@ def determine_topic(message):
         return "algorithms"
     elif "more" in text:
         return "more"
+    elif "help" in text:
+        return "help"
     elif "hello" in text:
         return "hello"
 
 #def_second_function for css
-def condiction_1 (message4):
-    text = message4.text.lower()
+def condiction_1 (message1):
+    text = message1.text.lower()
     if " flexbpox" in text:
         return "flexbox"
     elif " grid" in text:
         return " grid"
-    elif " gap" in text:
+    elif "what is gap" in text:
         return " gap"
     elif "class" in text :
         return "class"
@@ -55,8 +57,7 @@ def condiction_1 (message4):
         return "id"
     elif "rule css" in text :
         return "rule css"
-    elif "how to add css" in text:
-        return "how to add css"
+
     return None  # No specific topic detected
 
 #def_second_function for HTML
@@ -71,25 +72,6 @@ def condiction_2(message2):
         return "html element"
     elif "code block" in text:
         return "code block"
-    elif "heading or h" in text:
-        return "heading"
-    elif "paragrap" in text:
-        return "paragrap"
-    return None
-
-#def_second_function for python
-def condiction_3(message3):
-    text = message3.text.lower()
-    if "date type" in text:
-        return "data type"
-    elif "for Loop" in text:
-        return " for Loop"
-    elif "while loop" in text:
-        return"while loop"
-    elif "function" in text:
-        return "function"
-    elif "array" in text:
-        return "array"
     return None
 
 # Start command handler
@@ -106,13 +88,14 @@ def start(message):
     databases_button = KeyboardButton("💾 Databases")
     algorithms_button = KeyboardButton("🔣 Algorithms")
     more_button = KeyboardButton("❓ More")
-    help_button = KeyboardButton("Help")
+    help_button = KeyboardButton("❓ Help")
 
     markup.add(
         html_button, css_button, python_button,
         javascript_button, databases_button, algorithms_button,
-        more_button,help_button
+        help_button, more_button
     )
+
 
     # Send message with enhanced buttons 
     bot.send_message(
@@ -122,33 +105,26 @@ def start(message):
     )
 
 
-# Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","Help"])
+# Message handler for topic selection@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More", "Help"])
 def handle_topic_selection(message):
     topic = message.text.lower()
-    if topic == "help":
+    if topic == "more":
         bot.send_message(message.chat.id, RESPONSES["More"])
     else:
         bot.send_message(message.chat.id, RESPONSES[topic])
 
 
 #Message for topic selecion 2
-@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block","heading","paragrap"])
+@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block"])
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
 
-# css
-@bot.message_handler(func=lambda message4: message4.text in ["flexbox","grid","gap","class","id","rule css","how to add css"])
-def handle_topic_selection(message4):
-    topic = message4.text
-    bot.send_message(message4.chat.id, RESPONSES[topic])
 
-# python
-@bot.message_handler(func=lambda message3: message3.text in ["data type"," for Loop","while loop","function","array"])
-def handle_topic_selection(message3):
-    topic = message3.text
-    bot.send_message(message3.chat.id, RESPONSES[topic])
+@bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","rule css"])
+def handle_topic_selection(message1):
+    topic = message1.text
+    bot.send_message(message1.chat.id, RESPONSES[topic])
 
 
 # Command: /info
@@ -194,7 +170,7 @@ def send_weather(message):
         weather_data = "Sorry, I couldn't fetch the weather data. Please check the city name."
 
     bot.reply_to(message, weather_data)
-
+    
 # Fallback message handler for any question
 @bot.message_handler(func=lambda message: True)
 def handle_question(message):
@@ -220,3 +196,4 @@ def handle_question(message):
 if __name__ == "__main__":
     print("Bot is running...")
     bot.polling()
+
