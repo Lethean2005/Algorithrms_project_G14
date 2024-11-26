@@ -70,14 +70,22 @@ The HTML element is everything from the start tag to the end tag:
 - /video - watch video
 - /weather - Check weather
 """,
-"help": """ + question guideline: 
-    - what is HTML 🕵️ ?
-    - what is CSS 🤓?
-    - what is python 🐍?
-    - what is javascript 🤔?
-    - what is databases 🌐?
-    - what is algorithms 🚀?
+"help": """ 🔴➡️ question guideline: 
 
+        🔸 what is HTML 🕵️ ?                                                            
+        🔸 what is CSS 🤓?                                
+        🔸 what is python 🐍?
+        🔸 what is javascript 🤔?
+        🔸 what is databases 🌐?
+        🔸 what is algorithms 🚀?
+
+    🎯 About HTML:                                                🎯 About CSS:
+        🔹 /structure :Structure HTML                       🔹 What is flexbox ?                                                                                                                  
+        🔹 /table :Table of HTML                                  🔹 What is grid ?                                               
+        🔹 Element of HTML                                          🔹 Class & ID                                          
+        🔹 Code block                                                      🔹 What is gap?
+        🔹 HTML Heading & Paragrap                       🔹 Rule CSS
+        🔹 Video about HTML & CSS                          🔹 How to add CSS?
 """,
 "code block":"""Ordered list:
 html
@@ -157,6 +165,11 @@ def condiction_2(message2):
         return "code block"
     return None
 
+def condiction_3(message_help):
+    text = message_help.text.lower()
+    if "structure" in text:
+        return "structure"
+
 # Start command handler
 @bot.message_handler(commands=["start"])
 def start(message):
@@ -209,7 +222,53 @@ def handle_topic_selection(message1):
     topic = message1.text
     bot.send_message(message1.chat.id, RESPONSES[topic])
 
+@bot.message_handler(func=lambda message_help: message_help.text in ["structure", "table"])
+def handle_topic_selection(message_help):
+    topic = message_help.text
+    bot.send_message(message_help.chat.id, RESPONSES[topic])
 
+# structure
+@bot.message_handler(commands=["structure"])
+def send_structure(message_help):
+    bot.reply_to(message_help, "structure:"
+    """<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+</head>
+<body>
+    <!-- Page content goes here -->
+</body>
+</html>
+""")
+    
+#table
+
+@bot.message_handler(commands=["table"])
+def send_table(message_help):
+    bot.reply_to(message_help, "table:"
+    """<table>
+<thead>
+    <tr>
+        <th>Header 1</th>
+        <th>Header 2</th>
+        <th>Header 3</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>Row 1, Column 1</td>
+        <td>Row 1, Column 2</td>
+        <td>Row 1, Column 3</td>
+    </tr>
+    <tr>
+        <td>Row 2, Column 1</td>
+        <td>Row 2, Column 2</td>
+        <td>Row 2, Column 3</td>
+    </tr>
+</tbody>
+</table>
+ """)
 # Command: /info
 @bot.message_handler(commands=["info"])
 def send_info(message):
