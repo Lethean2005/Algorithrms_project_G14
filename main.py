@@ -1,4 +1,4 @@
-import random
+import json
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from telebot.apihelper import ApiTelegramException
@@ -8,144 +8,17 @@ import requests
 BOT_TOKEN = "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI"
 bot = telebot.TeleBot(BOT_TOKEN)
 
-# Predefined responses for topics
-RESPONSES = {
-    "hello": "Hello! How are you? I'm here to assist you with HTML, CSS, Python, JavaScript, Databases, Algorithms, and more!",
-    "html": "HTML (HyperText Markup Language) is the standard markup language for creating web pages. How can I assist you with HTML?",
-    "css": "CSS (Cascading Style Sheets) is used to style HTML elements. How can I help with CSS?",
-    "python": "Python is a versatile programming language, and Tkinter is its built-in library for creating GUIs. What do you want to know about Python or Tkinter?",
-    "javascript": "JavaScript is a programming language used for creating interactive effects within web browsers. How can I help with JavaScript?",
-    "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
-    "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
-    "flexbox": 
-        "CSS Flexbox is a layout model that allows you to design responsive web pages easily. "
-        "It enables you to align and distribute space among items in a container, even when their sizes are unknown or dynamic.",
-    "grid":  "CSS Grid is a powerful layout system for creating two-dimensional layouts. "
-        "It allows you to divide a page into rows and columns and place items within the grid. It's especially useful for complex web layouts.",
-    "gap": "The gap property in CSS is used to specify the space between items in a container, typically in a flexbox or grid layout."
-            "It is a shorthand for defining the spacing between rows and columns in a grid or between flex items.",
-    "class":"class (.)  Can be applied to multiple elements.",
-    "id":"ID (#): Must be unique to one element.",
-    "element": """An HTML element is defined by a start tag, some content, and an end tag:
+# Load the JSON configuration with UTF-8 encoding
+with open("bot_config.json", "r", encoding="utf-8") as file:
+    config = json.load(file)
 
-<tagname> Content goes here... </tagname>
-The HTML element is everything from the start tag to the end tag:
-""",
-    "structure": """<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Title</title>
-</head>
-<body>
-    <!-- Page content goes here -->
-</body>
-</html>
-""",
-"table": """<table>
-<thead>
-    <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-        <th>Header 3</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Row 1, Column 1</td>
-        <td>Row 1, Column 2</td>
-        <td>Row 1, Column 3</td>
-    </tr>
-    <tr>
-        <td>Row 2, Column 1</td>
-        <td>Row 2, Column 2</td>
-        <td>Row 2, Column 3</td>
-    </tr>
-</tbody>
-</table>
- """,
-  "more": """Here are the available commands:
-- /start - Start the bot
-- /info - Information about the bot
-- /status - Check the bot's status
-- /video - watch video
-- /weather - Check weather
-""",
-"code block":"""Ordered list:
-html
-<pre>
-<ol>
-  <li>Item 1</li>
-  <li>Item 2</li>
-</ol>
-Unordered list:
-html
-<ul>
-  <li>Item A</li>
-  <li>Item B</li>
-</ul>
-</pre>
-""",
-"heading":"""HTML headings are titles or subtitles that you want to display on a webpage.
-    Example:
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
-        <h5>Heading 5</h5>
-        <h6>Heading 6</h6>""",
-"paragrap":"""A paragraph always starts on a new line, and is usually a block of text.
-        Example:
-            <p>This is a paragraph.</p>
-            <p>This is another paragraph.</p>""",
-    
-"rule css" : """A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:
-
-            1.Selector: Specifies which HTML elements the rule applies to.
-
-            2.Declaration Block: Contains one or more property-value pairs that define the style.""",
-"how to add css"        :"""There are three ways of inserting a style sheet:
-
-        1.External CSS
-    `  2.Internal CSS
-        3.Inline CSS""",
-"data type": """Python has the following data types built-in by default, in these categories:
-
-        Text Type:	str
-        Numeric Types:	int, float, complex
-        Sequence Types:	list, tuple, range
-        Mapping Type:	dict
-        Set Types:	set, frozenset
-        Boolean Type:	bool
-        Binary Types:	bytes, bytearray, memoryview
-        None Type:	NoneType""",
-" for Loops":""" for loop we can execute a set of statements, once for each item in a list, tuple, set etc.
-    Example:
-    Loop through the letters in the word "banana"
-
-        for i in "banana":
-        print(i)""",
-"while loop" :   """  while loop we can execute a set of statements as long as a condition is true.
-
-    Example:
-    Print i as long as i is less than 6:
-
-        i = 1
-        while i < 6:
-        print(i)
-        i += 1""",
-"function" :"""A function is a block of code which only runs when it is called.
-
-    You can pass data, known as parameters, into a function.
-
-    A function can return data as a result.
-    Example:
-        def my_function():
-        print("Hello from a function")
-
-        my_function()""",
-"what is an array": " An array is a special variable, which can hold more than one value at a time."
-
-}
+# Access data from the JSON
+BOT_TOKEN = config["bot_token"]
+RESPONSES = config["responses"]
+BUTTONS = config["buttons"]
+COMMANDS = config["commands"]
+HELP_LINK = config["help_link"]
+DEFAULT_CITY = config["default_city"]
 
 # Helper function to determine the topic
 def determine_topic(message):
@@ -232,12 +105,13 @@ def start(message):
     javascript_button = KeyboardButton("📜 JavaScript")
     databases_button = KeyboardButton("💾 Databases")
     algorithms_button = KeyboardButton("🔣 Algorithms")
-    help_button = KeyboardButton("❓ More")
+    more_button = KeyboardButton("❓ More")
+    help_button = KeyboardButton("Help")
 
     markup.add(
         html_button, css_button, python_button,
         javascript_button, databases_button, algorithms_button,
-        help_button
+        more_button,help_button
     )
 
     # Send message with enhanced buttons 
@@ -249,7 +123,7 @@ def start(message):
 
 
 # Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More"])
+@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","Help"])
 def handle_topic_selection(message):
     topic = message.text.lower()
     if topic == "help":
@@ -289,6 +163,7 @@ def send_info(message):
 @bot.message_handler(commands=["status"])
 def send_status(message):
     bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
+
 
 @bot.message_handler(commands=["video"])
 def send_status(message):
