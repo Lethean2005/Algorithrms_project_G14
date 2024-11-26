@@ -67,7 +67,6 @@ The HTML element is everything from the start tag to the end tag:
 - /start - Start the bot
 - /info - Information about the bot
 - /status - Check the bot's status
-- /data - Get a random data
 - /video - watch video
 - /weather - Check weather
 """,
@@ -160,12 +159,13 @@ def start(message):
     javascript_button = KeyboardButton("📜 JavaScript")
     databases_button = KeyboardButton("💾 Databases")
     algorithms_button = KeyboardButton("🔣 Algorithms")
-    help_button = KeyboardButton("❓ More")
+    more_button = KeyboardButton("❓ More")
+    help_button = KeyboardButton("Help")
 
     markup.add(
         html_button, css_button, python_button,
         javascript_button, databases_button, algorithms_button,
-        help_button
+        more_button,help_button
     )
 
 
@@ -178,7 +178,7 @@ def start(message):
 
 
 # Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More"])
+@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","Help"])
 def handle_topic_selection(message):
     topic = message.text.lower()
     if topic == "help":
@@ -213,19 +213,6 @@ def send_info(message):
 def send_status(message):
     bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
 
-# Command: /data
-@bot.message_handler(commands=["data"])
-def send_data(message):
-    data = [
-        """
-        1. User Data 
-        2. Interaction Data 
-        3. Bot Data 
-        4. Group and Channel Data (if the bot operates in groups or channels) 
-        5. Analytics and Performance Data 
-        """
-    ]
-    bot.reply_to(message, random.choice(data))
 
 @bot.message_handler(commands=["video"])
 def send_status(message):
