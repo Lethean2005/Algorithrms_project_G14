@@ -122,7 +122,7 @@ def condiction_1 (message1):
         return "flexbox"
     elif " grid" in text:
         return " grid"
-    elif "what is gap" in text:
+    elif " gap" in text:
         return " gap"
     elif "class" in text :
         return "class"
@@ -243,7 +243,6 @@ def send_weather(message):
 
     response = requests.get(url)
     data = response.json()
-
 
     # Check if the request was successful
     if "error" not in data:
