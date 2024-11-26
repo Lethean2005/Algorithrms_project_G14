@@ -3,7 +3,6 @@ import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from telebot.apihelper import ApiTelegramException
 import requests
-import random
 
 # Replace this with your Bot Token from BotFather
 BOT_TOKEN = "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI"
@@ -38,6 +37,8 @@ def determine_topic(message):
         return "algorithms"
     elif "more" in text:
         return "more"
+    elif "help" in text:
+        return "help"
     elif "hello" in text:
         return "hello"
 
@@ -87,13 +88,14 @@ def start(message):
     databases_button = KeyboardButton("💾 Databases")
     algorithms_button = KeyboardButton("🔣 Algorithms")
     more_button = KeyboardButton("❓ More")
-    help_button = KeyboardButton("Help")
+    help_button = KeyboardButton("❓ Help")
 
     markup.add(
         html_button, css_button, python_button,
         javascript_button, databases_button, algorithms_button,
-        more_button,help_button
+        help_button, more_button
     )
+
 
     # Send message with enhanced buttons 
     bot.send_message(
@@ -103,11 +105,10 @@ def start(message):
     )
 
 
-# Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","Help"])
+# Message handler for topic selection@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More", "Help"])
 def handle_topic_selection(message):
     topic = message.text.lower()
-    if topic == "help":
+    if topic == "more":
         bot.send_message(message.chat.id, RESPONSES["More"])
     else:
         bot.send_message(message.chat.id, RESPONSES[topic])
@@ -139,19 +140,6 @@ def send_info(message):
 def send_status(message):
     bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
 
-# Command: /data
-@bot.message_handler(commands=["data"])
-def send_data(message):
-    data = [
-        """
-        1. User Data 
-        2. Interaction Data 
-        3. Bot Data 
-        4. Group and Channel Data (if the bot operates in groups or channels) 
-        5. Analytics and Performance Data 
-        """
-    ]
-    bot.reply_to(message, random.choice(data))
 
 @bot.message_handler(commands=["video"])
 def send_status(message):
@@ -171,7 +159,6 @@ def send_weather(message):
     response = requests.get(url)
     data = response.json()
 
-
     # Check if the request was successful
     if "error" not in data:
         weather_data = (
@@ -183,13 +170,13 @@ def send_weather(message):
         weather_data = "Sorry, I couldn't fetch the weather data. Please check the city name."
 
     bot.reply_to(message, weather_data)
-
+    
 # Fallback message handler for any question
 @bot.message_handler(func=lambda message: True)
 def handle_question(message):
     topic = determine_topic(message)
     if topic:
-        # Respond with a predefined answer 
+        # Respond with a predefined answer
         bot.send_message(message.chat.id, RESPONSES[topic])
     else:
         # Respond with a generic message and provide a helpful link
