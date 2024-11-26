@@ -1,0 +1,42 @@
+{
+  "bot_token": "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI",
+  "weather_api_key": "7f59948b973042e8bfd22815241211",
+  "responses": {
+      "hello": "Hello! How are you? I'm here to assist you with HTML, CSS, Python, JavaScript, Databases, Algorithms, and more!",
+      "html": "HTML (HyperText Markup Language) is the standard markup language for creating web pages. How can I assist you with HTML?",
+      "css": "CSS (Cascading Style Sheets) is used to style HTML elements. How can I help with CSS?",
+      "python": "Python is a versatile programming language, and Tkinter is its built-in library for creating GUIs. What do you want to know about Python or Tkinter?",
+      "javascript": "JavaScript is a programming language used for creating interactive effects within web browsers. How can I help with JavaScript?",
+      "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
+      "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
+      "flexbox": "CSS Flexbox is a layout model that allows you to design responsive web pages easily. It enables you to align and distribute space among items in a container, even when their sizes are unknown or dynamic.",
+      "grid": "CSS Grid is a powerful layout system for creating two-dimensional layouts. It allows you to divide a page into rows and columns and place items within the grid. It's especially useful for complex web layouts.",
+      "gap": "The gap property in CSS is used to specify the space between items in a container, typically in a flexbox or grid layout. It is a shorthand for defining the spacing between rows and columns in a grid or between flex items.",
+      "class": "class (.) Can be applied to multiple elements.",
+      "id": "ID (#): Must be unique to one element.",
+      "element": "An HTML element is defined by a start tag, some content, and an end tag:\n\n<tagname>Content goes here...</tagname>\nThe HTML element is everything from the start tag to the end tag.",
+      "structure": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Page Title</title>\n</head>\n<body>\n    <!-- Page content goes here -->\n</body>\n</html>",
+      "table": "<table>\n<thead>\n    <tr>\n        <th>Header 1</th>\n        <th>Header 2</th>\n        <th>Header 3</th>\n    </tr>\n</thead>\n<tbody>\n    <tr>\n        <td>Row 1, Column 1</td>\n        <td>Row 1, Column 2</td>\n        <td>Row 1, Column 3</td>\n    </tr>\n    <tr>\n        <td>Row 2, Column 1</td>\n        <td>Row 2, Column 2</td>\n        <td>Row 2, Column 3</td>\n    </tr>\n</tbody>\n</table>",
+      "more": "Here are the available commands:\n- /start - Start the bot\n- /info - Information about the bot\n- /status - Check the bot's status\n- /video - Watch video\n- /weather - Check weather",
+      "code block": "Ordered list:\n<pre>\n<ol>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ol>\nUnordered list:\n<ul>\n  <li>Item A</li>\n  <li>Item B</li>\n</ul>\n</pre>",
+      "rule css": "A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:\n\n1. Selector: Specifies which HTML elements the rule applies to.\n\n2. Declaration Block: Contains one or more property-value pairs that define the style."
+    },
+    "buttons": {
+      "html_button": "🖍 HTML",
+      "css_button": "🎨 CSS",
+      "python_button": "🐍 Python",
+      "javascript_button": "📜 JavaScript",
+      "databases_button": "💾 Databases",
+      "algorithms_button": "🔣 Algorithms",
+      "more_button": "❓ More",
+      "help_button": "Help"
+  },
+    "commands": {
+      "/info": "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia.",
+      "/status": "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅",
+      "/video": "https://www.youtube.com/playlist?list=PL938URpgZ7qYQrfk-HHvzYJMsd576-P66",
+      "/weather": "Check weather functionality."
+  },
+    "default_city": "Phnom Penh",
+    "help_link": "https://www.w3schools.com/"
+}
