@@ -71,12 +71,12 @@ The HTML element is everything from the start tag to the end tag:
 - /weather - Check weather
 """,
 "help": """ + question guideline: 
-- what is HTML 🕵️ ?
-- what is CSS 🤓?
-- what is python 🐍💡?
-- what is javascript 🤔💬?
-- what is databases 🌐💻?
-- what is algorithms 🚀?
+    - what is HTML 🕵️ ?
+    - what is CSS 🤓?
+    - what is python 🐍?
+    - what is javascript 🤔?
+    - what is databases 🌐?
+    - what is algorithms 🚀?
 
 """,
 "code block":"""Ordered list:
