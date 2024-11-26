@@ -1,4 +1,4 @@
-import random
+import json
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from telebot.apihelper import ApiTelegramException
@@ -69,15 +69,6 @@ The HTML element is everything from the start tag to the end tag:
 - /status - Check the bot's status
 - /video - watch video
 - /weather - Check weather
-""",
-"help": """ + question guideline: 
-    - what is HTML 🕵️ ?
-    - what is CSS 🤓?
-    - what is python 🐍?
-    - what is javascript 🤔?
-    - what is databases 🌐?
-    - what is algorithms 🚀?
-
 """,
 "code block":"""Ordered list:
 html
