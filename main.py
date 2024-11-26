@@ -168,7 +168,6 @@ def start(message):
         help_button
     )
 
-
     # Send message with enhanced buttons 
     bot.send_message(
         message.chat.id,
@@ -245,6 +244,7 @@ def send_weather(message):
     response = requests.get(url)
     data = response.json()
 
+
     # Check if the request was successful
     if "error" not in data:
         weather_data = (
@@ -256,13 +256,13 @@ def send_weather(message):
         weather_data = "Sorry, I couldn't fetch the weather data. Please check the city name."
 
     bot.reply_to(message, weather_data)
-    
+
 # Fallback message handler for any question
 @bot.message_handler(func=lambda message: True)
 def handle_question(message):
     topic = determine_topic(message)
     if topic:
-        # Respond with a predefined answer
+        # Respond with a predefined answer 
         bot.send_message(message.chat.id, RESPONSES[topic])
     else:
         # Respond with a generic message and provide a helpful link
@@ -281,4 +281,4 @@ def handle_question(message):
 # Start polling
 if __name__ == "__main__":
     print("Bot is running...")
-    bot.polling() 
+    bot.polling()
