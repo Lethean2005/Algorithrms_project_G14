@@ -1,4 +1,4 @@
-import random
+import json
 import telebot
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 from telebot.apihelper import ApiTelegramException
@@ -8,91 +8,17 @@ import requests
 BOT_TOKEN = "7699208754:AAFlNIo-PsNOaM2pn6UUKYe0j_lou1wI5wI"
 bot = telebot.TeleBot(BOT_TOKEN)
 
-# Predefined responses for topics
-RESPONSES = {
-    "hello": "Hello! How are you? I'm here to assist you with HTML, CSS, Python, JavaScript, Databases, Algorithms, and more!",
-    "html": "HTML (HyperText Markup Language) is the standard markup language for creating web pages. How can I assist you with HTML?",
-    "css": "CSS (Cascading Style Sheets) is used to style HTML elements. How can I help with CSS?",
-    "python": "Python is a versatile programming language, and Tkinter is its built-in library for creating GUIs. What do you want to know about Python or Tkinter?",
-    "javascript": "JavaScript is a programming language used for creating interactive effects within web browsers. How can I help with JavaScript?",
-    "databases": "Databases store and manage data. You can use SQL, NoSQL, or other database technologies. What do you want to know about databases?",
-    "algorithms": "Algorithms are a set of instructions to solve a problem. They are fundamental to computer science. How can I assist you with algorithms?",
-    "flexbox": 
-        "CSS Flexbox is a layout model that allows you to design responsive web pages easily. "
-        "It enables you to align and distribute space among items in a container, even when their sizes are unknown or dynamic.",
-    "grid":  "CSS Grid is a powerful layout system for creating two-dimensional layouts. "
-        "It allows you to divide a page into rows and columns and place items within the grid. It's especially useful for complex web layouts.",
-    "gap": "The gap property in CSS is used to specify the space between items in a container, typically in a flexbox or grid layout."
-            "It is a shorthand for defining the spacing between rows and columns in a grid or between flex items.",
-    "class":"class (.)  Can be applied to multiple elements.",
-    "id":"ID (#): Must be unique to one element.",
-    "element": """An HTML element is defined by a start tag, some content, and an end tag:
+# Load the JSON configuration with UTF-8 encoding
+with open("bot_config.json", "r", encoding="utf-8") as file:
+    config = json.load(file)
 
-<tagname> Content goes here... </tagname>
-The HTML element is everything from the start tag to the end tag:
-""",
-    "structure": """<!DOCTYPE html>
-<html>
-<head>
-    <title>Page Title</title>
-</head>
-<body>
-    <!-- Page content goes here -->
-</body>
-</html>
-""",
-"table": """<table>
-<thead>
-    <tr>
-        <th>Header 1</th>
-        <th>Header 2</th>
-        <th>Header 3</th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>Row 1, Column 1</td>
-        <td>Row 1, Column 2</td>
-        <td>Row 1, Column 3</td>
-    </tr>
-    <tr>
-        <td>Row 2, Column 1</td>
-        <td>Row 2, Column 2</td>
-        <td>Row 2, Column 3</td>
-    </tr>
-</tbody>
-</table>
- """,
-  "more": """Here are the available commands:
-- /start - Start the bot
-- /info - Information about the bot
-- /status - Check the bot's status
-- /video - watch video
-- /weather - Check weather
-""",
-"code block":"""Ordered list:
-html
-<pre>
-<ol>
-  <li>Item 1</li>
-  <li>Item 2</li>
-</ol>
-Unordered list:
-html
-<ul>
-  <li>Item A</li>
-  <li>Item B</li>
-</ul>
-</pre>
-""",
-    
-   "rule css" : """A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:
-
-            1.Selector: Specifies which HTML elements the rule applies to.
-
-            2.Declaration Block: Contains one or more property-value pairs that define the style.""",
-}
-
+# Access data from the JSON
+BOT_TOKEN = config["bot_token"]
+RESPONSES = config["responses"]
+BUTTONS = config["buttons"]
+COMMANDS = config["commands"]
+HELP_LINK = config["help_link"]
+DEFAULT_CITY = config["default_city"]
 
 # Helper function to determine the topic
 def determine_topic(message):
