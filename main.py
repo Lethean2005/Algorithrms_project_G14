@@ -70,6 +70,15 @@ The HTML element is everything from the start tag to the end tag:
 - /video - watch video
 - /weather - Check weather
 """,
+"help": """ + question guideline: 
+- what is HTML 🕵️ ?
+- what is CSS 🤓?
+- what is python 🐍🤔💬?
+- what is javascript?
+- what is databases?
+- what is algorithms?
+
+""",
 "code block":"""Ordered list:
 html
 <pre>
@@ -111,6 +120,8 @@ def determine_topic(message):
         return "algorithms"
     elif "more" in text:
         return "more"
+    elif "help" in text:
+        return "help"
     elif "hello" in text:
         return "hello"
 
@@ -160,12 +171,20 @@ def start(message):
     databases_button = KeyboardButton("💾 Databases")
     algorithms_button = KeyboardButton("🔣 Algorithms")
     more_button = KeyboardButton("❓ More")
+<<<<<<< HEAD
     help_button = KeyboardButton("Help")
+=======
+    help_button = KeyboardButton("❓ Help")
+>>>>>>> mesa
 
     markup.add(
         html_button, css_button, python_button,
         javascript_button, databases_button, algorithms_button,
+<<<<<<< HEAD
         more_button,help_button
+=======
+        help_button, more_button
+>>>>>>> mesa
     )
 
 
@@ -178,10 +197,14 @@ def start(message):
 
 
 # Message handler for topic selection
+<<<<<<< HEAD
 @bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","Help"])
+=======
+@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More", "Help"])
+>>>>>>> mesa
 def handle_topic_selection(message):
     topic = message.text.lower()
-    if topic == "help":
+    if topic == "more":
         bot.send_message(message.chat.id, RESPONSES["More"])
     else:
         bot.send_message(message.chat.id, RESPONSES[topic])
