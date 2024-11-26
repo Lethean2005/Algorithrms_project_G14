@@ -67,7 +67,6 @@ The HTML element is everything from the start tag to the end tag:
 - /start - Start the bot
 - /info - Information about the bot
 - /status - Check the bot's status
-- /data - Get a random data
 - /video - watch video
 - /weather - Check weather
 """,
@@ -86,14 +85,67 @@ html
 </ul>
 </pre>
 """,
+"heading":"""HTML headings are titles or subtitles that you want to display on a webpage.
+    Example:
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>""",
+"paragrap":"""A paragraph always starts on a new line, and is usually a block of text.
+        Example:
+            <p>This is a paragraph.</p>
+            <p>This is another paragraph.</p>""",
     
-   "rule css" : """A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:
+"rule css" : """A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:
 
             1.Selector: Specifies which HTML elements the rule applies to.
 
             2.Declaration Block: Contains one or more property-value pairs that define the style.""",
-}
+"how to add css"        :"""There are three ways of inserting a style sheet:
 
+        1.External CSS
+    `  2.Internal CSS
+        3.Inline CSS""",
+"data type": """Python has the following data types built-in by default, in these categories:
+
+        Text Type:	str
+        Numeric Types:	int, float, complex
+        Sequence Types:	list, tuple, range
+        Mapping Type:	dict
+        Set Types:	set, frozenset
+        Boolean Type:	bool
+        Binary Types:	bytes, bytearray, memoryview
+        None Type:	NoneType""",
+" for Loops":""" for loop we can execute a set of statements, once for each item in a list, tuple, set etc.
+    Example:
+    Loop through the letters in the word "banana"
+
+        for i in "banana":
+        print(i)""",
+"while loop" :   """  while loop we can execute a set of statements as long as a condition is true.
+
+    Example:
+    Print i as long as i is less than 6:
+
+        i = 1
+        while i < 6:
+        print(i)
+        i += 1""",
+"function" :"""A function is a block of code which only runs when it is called.
+
+    You can pass data, known as parameters, into a function.
+
+    A function can return data as a result.
+    Example:
+        def my_function():
+        print("Hello from a function")
+
+        my_function()""",
+"what is an array": " An array is a special variable, which can hold more than one value at a time."
+
+}
 
 # Helper function to determine the topic
 def determine_topic(message):
@@ -116,8 +168,8 @@ def determine_topic(message):
         return "hello"
 
 #def_second_function for css
-def condiction_1 (message1):
-    text = message1.text.lower()
+def condiction_1 (message4):
+    text = message4.text.lower()
     if " flexbpox" in text:
         return "flexbox"
     elif " grid" in text:
@@ -130,7 +182,8 @@ def condiction_1 (message1):
         return "id"
     elif "rule css" in text :
         return "rule css"
-
+    elif "how to add css" in text:
+        return "how to add css"
     return None  # No specific topic detected
 
 #def_second_function for HTML
@@ -145,6 +198,25 @@ def condiction_2(message2):
         return "html element"
     elif "code block" in text:
         return "code block"
+    elif "heading or h" in text:
+        return "heading"
+    elif "paragrap" in text:
+        return "paragrap"
+    return None
+
+#def_second_function for python
+def condiction_3(message3):
+    text = message3.text.lower()
+    if "date type" in text:
+        return "data type"
+    elif "for Loop" in text:
+        return " for Loop"
+    elif "while loop" in text:
+        return"while loop"
+    elif "function" in text:
+        return "function"
+    elif "array" in text:
+        return "array"
     return None
 
 # Start command handler
@@ -187,16 +259,22 @@ def handle_topic_selection(message):
 
 
 #Message for topic selecion 2
-@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block"])
+@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block","heading","paragrap"])
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
 
+# css
+@bot.message_handler(func=lambda message4: message4.text in ["flexbox","grid","gap","class","id","rule css","how to add css"])
+def handle_topic_selection(message4):
+    topic = message4.text
+    bot.send_message(message4.chat.id, RESPONSES[topic])
 
-@bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","rule css"])
-def handle_topic_selection(message1):
-    topic = message1.text
-    bot.send_message(message1.chat.id, RESPONSES[topic])
+# python
+@bot.message_handler(func=lambda message3: message3.text in ["data type"," for Loop","while loop","function","array"])
+def handle_topic_selection(message3):
+    topic = message3.text
+    bot.send_message(message3.chat.id, RESPONSES[topic])
 
 
 # Command: /info
@@ -211,20 +289,6 @@ def send_info(message):
 @bot.message_handler(commands=["status"])
 def send_status(message):
     bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
-
-# Command: /data
-@bot.message_handler(commands=["data"])
-def send_data(message):
-    data = [
-        """
-        1. User Data 
-        2. Interaction Data 
-        3. Bot Data 
-        4. Group and Channel Data (if the bot operates in groups or channels) 
-        5. Analytics and Performance Data 
-        """
-    ]
-    bot.reply_to(message, random.choice(data))
 
 @bot.message_handler(commands=["video"])
 def send_status(message):
