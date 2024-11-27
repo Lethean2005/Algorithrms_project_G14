@@ -53,16 +53,13 @@ def condiction_1 (message1):
         return " gap"
     elif "class" in text :
         return "class"
-    elif "id" in text:
+    elif "id" in text :
         return "id"
-    elif "margin" in text :
-        return "margin"
     elif "rule css" in text :
         return "rule css"
     elif "how to add css" in text:
         return "how to add css"
-    elif "padding" in text:
-        return "padding"
+
     return None  # No specific topic detected
 
 #def_second_function for HTML
@@ -77,10 +74,6 @@ def condiction_2(message2):
         return "html element"
     elif "code block" in text:
         return "code block"
-    elif "heading" in text:
-        return "paragrap"
-    
-    
     return None
 
 #def_second_function for python
@@ -96,8 +89,8 @@ def condiction_3(message3):
         return "function"
     elif "array" in text:
         return "array"
-    elif "string" in text:
-        return "string"
+    elif "how to add css" in text:
+        return "how to add css"
     return None
 
 # Start command handler
@@ -141,18 +134,18 @@ def handle_topic_selection(message):
 
 
 #Message for topic selecion 2
-@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block","heading","paragrap"])
+@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block"])
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
 
 # css
-@bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","margin","rule css","padding","how to add css"])
+@bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","rule css"])
 def handle_topic_selection(message1):
     topic = message1.text
     bot.send_message(message1.chat.id, RESPONSES[topic])
 #  py
-@bot.message_handler(func=lambda message3: message3.text in ["data type","for loop","while loop","function","array","string"])
+@bot.message_handler(func=lambda message3: message3.text in ["data type","how to add css","for loop","while loop","function","array"])
 def handle_topic_selection(message3):
     topic = message3.text
     bot.send_message(message3.chat.id, RESPONSES[topic])
