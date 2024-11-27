@@ -166,12 +166,6 @@ def send_info(message):
         "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia. Bots can simulate conversations, perform predefined tasks, and offer user-centric solutions seamlessly within Telegram."
     )
 
-# Command: /status
-@bot.message_handler(commands=["status"])
-def send_status(message):
-    bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
-
-
 @bot.message_handler(commands=["video"])
 def send_status(message):
     bot.reply_to(message, "https://www.youtube.com/playlist?list=PL938URpgZ7qYQrfk-HHvzYJMsd576-P66")
