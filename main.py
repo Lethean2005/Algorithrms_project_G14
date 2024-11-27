@@ -37,6 +37,8 @@ def determine_topic(message):
         return "algorithms"
     elif "more" in text:
         return "more"
+    elif "help" in text:
+        return "help"
     elif "hello" in text:
         return "hello"
 
@@ -55,6 +57,8 @@ def condiction_1 (message1):
         return "id"
     elif "rule css" in text :
         return "rule css"
+    elif "how to add css" in text:
+        return "how to add css"
 
     return None  # No specific topic detected
 
@@ -70,8 +74,23 @@ def condiction_2(message2):
         return "html element"
     elif "code block" in text:
         return "code block"
-    elif "mesa" in text:
-        return "mesa"
+    return None
+
+#def_second_function for python
+def condiction_3(message3):
+    text = message3.text.lower()
+    if "date type" in text:
+        return "data type"
+    elif "for loop" in text:
+        return " for loop"
+    elif "while loop" in text:
+        return"while loop"
+    elif "function" in text:
+        return "function"
+    elif "array" in text:
+        return "array"
+    elif "how to add css" in text:
+        return "how to add css"
     return None
 
 # Start command handler
@@ -88,12 +107,12 @@ def start(message):
     databases_button = KeyboardButton("💾 Databases")
     algorithms_button = KeyboardButton("🔣 Algorithms")
     more_button = KeyboardButton("❓ More")
-    help_button = KeyboardButton("Help")
+    help_button = KeyboardButton("❓ Help")
 
     markup.add(
         html_button, css_button, python_button,
         javascript_button, databases_button, algorithms_button,
-        more_button,help_button
+        help_button, more_button
     )
 
 
@@ -105,27 +124,31 @@ def start(message):
     )
 
 
-# Message handler for topic selection
-@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More","Help"])
+# Message handler for topic selection@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More", "Help"])
 def handle_topic_selection(message):
     topic = message.text.lower()
-    if topic == "help":
+    if topic == "more":
         bot.send_message(message.chat.id, RESPONSES["More"])
     else:
         bot.send_message(message.chat.id, RESPONSES[topic])
 
 
 #Message for topic selecion 2
-@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block","mesa"])
+@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block"])
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
 
-
+# css
 @bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","rule css"])
 def handle_topic_selection(message1):
     topic = message1.text
     bot.send_message(message1.chat.id, RESPONSES[topic])
+#  py
+@bot.message_handler(func=lambda message3: message3.text in ["data type","how to add css","for loop","while loop","function","array"])
+def handle_topic_selection(message3):
+    topic = message3.text
+    bot.send_message(message3.chat.id, RESPONSES[topic])
 
 
 # Command: /info

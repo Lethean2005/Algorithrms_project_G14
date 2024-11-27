@@ -20,24 +20,6 @@
       "more": "Here are the available commands:\n- /start - Start the bot\n- /info - Information about the bot\n- /status - Check the bot's status\n- /video - Watch video\n- /weather - Check weather",
       "code block": "Ordered list:\n<pre>\n<ol>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ol>\nUnordered list:\n<ul>\n  <li>Item A</li>\n  <li>Item B</li>\n</ul>\n</pre>",
       "rule css": "A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:\n\n1. Selector: Specifies which HTML elements the rule applies to.\n\n2. Declaration Block: Contains one or more property-value pairs that define the style.",
-      
-    },
-    "buttons": {
-      "html_button": "🖍 HTML",
-      "css_button": "🎨 CSS",
-      "python_button": "🐍 Python",
-      "javascript_button": "📜 JavaScript",
-      "databases_button": "💾 Databases",
-      "algorithms_button": "🔣 Algorithms",
-      "more_button": "❓ More",
-      "help_button": "Help"
-  },
-    "commands": {
-      "/info": "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia.",
-      "/status": "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅",
-      "/video": "https://www.youtube.com/playlist?list=PL938URpgZ7qYQrfk-HHvzYJMsd576-P66",
-      "/weather": "Check weather functionality."
-  },
-    "default_city": "Phnom Penh",
-    "help_link": "https://www.w3schools.com/"
-}
+      "how to add css": "There are three ways of inserting a style sheet:\n1. External CSS\n2. Internal CSS\n3. Inline CSS",
+      "data type": "Python has the following data types built-in by default, in these categories:\n- Text Type: str\n- Numeric Types: int, float, complex\n- Sequence Types: list, tuple, range\n- Mapping Type: dict\n- Set Types: set, frozenset\n- Boolean Type: bool\n- Binary Types: bytes, bytearray, memoryview\n- None Type: NoneType",
+      "for loop": "For loop we can execute a set of statements, once for each item in a list, tuple, set, etc.\nExample:\nfor i in 'banana':\n    print(i)",
