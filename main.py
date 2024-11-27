@@ -74,6 +74,8 @@ def condiction_2(message2):
         return "html element"
     elif "code block" in text:
         return "code block"
+    elif "heading" in text:
+        return"heading"
     return None
 
 #def_second_function for python

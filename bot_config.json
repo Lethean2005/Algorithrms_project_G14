@@ -27,6 +27,7 @@
       "function": "A function is a block of code which only runs when it is called.\nExample:\ndef my_function():\n    print('Hello from a function')\n\nmy_function()",
       "array": "An array is a special variable, which can hold more than one value at a time."
       
+      
     },
     "buttons": {
       "html_button": "🖍 HTML",
