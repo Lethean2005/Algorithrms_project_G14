@@ -40,8 +40,6 @@
   },
     "commands": {
       "/info": "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia.",
-      "/status": "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅",
-      "/video": "https://www.youtube.com/playlist?list=PL938URpgZ7qYQrfk-HHvzYJMsd576-P66",
       "/weather": "Check weather functionality."
   },
     "default_city": "Phnom Penh",
