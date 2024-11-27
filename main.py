@@ -70,6 +70,8 @@ def condiction_2(message2):
         return "html element"
     elif "code block" in text:
         return "code block"
+    elif "mesa" in text:
+        return "mesa"
     return None
 
 # Start command handler
@@ -114,7 +116,7 @@ def handle_topic_selection(message):
 
 
 #Message for topic selecion 2
-@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block"])
+@bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block","mesa"])
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
