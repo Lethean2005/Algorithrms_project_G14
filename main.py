@@ -79,11 +79,9 @@ def condiction_2(message2):
         return "code block"
     elif "heading" in text:
         return "paragrap"
-    
-    
     return None
 
-#def_second_function for python
+# Helper function to determine the python
 def condiction_3(message3):
     text = message3.text.lower()
     if "date type" in text:
@@ -103,6 +101,7 @@ def condiction_3(message3):
 # Start command handler
 @bot.message_handler(commands=["start"])
 def start(message):
+
     # Create a reply markup with buttons
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 
@@ -130,7 +129,6 @@ def start(message):
         reply_markup=markup,
     )
 
-
 # Message handler for topic selection@bot.message_handler(func=lambda message: message.text in ["HTML", "CSS", "Python", "JavaScript", "Databases", "Algorithms", "More", "Help"])
 def handle_topic_selection(message):
     topic = message.text.lower()
@@ -139,24 +137,23 @@ def handle_topic_selection(message):
     else:
         bot.send_message(message.chat.id, RESPONSES[topic])
 
+#Message for topich message 1
+@bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","margin","rule css","padding","how to add css"])
+def handle_topic_selection(message1):
+    topic = message1.text
+    bot.send_message(message1.chat.id, RESPONSES[topic])
 
-#Message for topic selecion 2
+#Message for topich message 2
 @bot.message_handler(func=lambda message2: message2.text in ["table", "structure", "element", "code block","heading","paragrap"])
 def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
 
-# css
-@bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","margin","rule css","padding","how to add css"])
-def handle_topic_selection(message1):
-    topic = message1.text
-    bot.send_message(message1.chat.id, RESPONSES[topic])
-#  py
+#Message for topich message 3
 @bot.message_handler(func=lambda message3: message3.text in ["data type","for loop","while loop","function","array","string"])
 def handle_topic_selection(message3):
     topic = message3.text
     bot.send_message(message3.chat.id, RESPONSES[topic])
-
 
 # Command: /info
 @bot.message_handler(commands=["info"])
@@ -171,7 +168,7 @@ def send_info(message):
 def send_status(message):
     bot.reply_to(message, "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅")
 
-
+# Command: /video
 @bot.message_handler(commands=["video"])
 def send_status(message):
     bot.reply_to(message, "https://www.youtube.com/playlist?list=PL938URpgZ7qYQrfk-HHvzYJMsd576-P66")
