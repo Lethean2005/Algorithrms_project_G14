@@ -19,7 +19,14 @@
       "table": "<table>\n<thead>\n    <tr>\n        <th>Header 1</th>\n        <th>Header 2</th>\n        <th>Header 3</th>\n    </tr>\n</thead>\n<tbody>\n    <tr>\n        <td>Row 1, Column 1</td>\n        <td>Row 1, Column 2</td>\n        <td>Row 1, Column 3</td>\n    </tr>\n    <tr>\n        <td>Row 2, Column 1</td>\n        <td>Row 2, Column 2</td>\n        <td>Row 2, Column 3</td>\n    </tr>\n</tbody>\n</table>",
       "more": "Here are the available commands:\n- /start - Start the bot\n- /info - Information about the bot\n- /status - Check the bot's status\n- /video - Watch video\n- /weather - Check weather",
       "code block": "Ordered list:\n<pre>\n<ol>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ol>\nUnordered list:\n<ul>\n  <li>Item A</li>\n  <li>Item B</li>\n</ul>\n</pre>",
-      "rule css": "A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:\n\n1. Selector: Specifies which HTML elements the rule applies to.\n\n2. Declaration Block: Contains one or more property-value pairs that define the style."
+      "rule css": "A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:\n\n1. Selector: Specifies which HTML elements the rule applies to.\n\n2. Declaration Block: Contains one or more property-value pairs that define the style.",
+      "how to add css": "There are three ways of inserting a style sheet:\n1. External CSS\n2. Internal CSS\n3. Inline CSS",
+      "data type": "Python has the following data types built-in by default, in these categories:\n- Text Type: str\n- Numeric Types: int, float, complex\n- Sequence Types: list, tuple, range\n- Mapping Type: dict\n- Set Types: set, frozenset\n- Boolean Type: bool\n- Binary Types: bytes, bytearray, memoryview\n- None Type: NoneType",
+      "for loop": "For loop we can execute a set of statements, once for each item in a list, tuple, set, etc.\nExample:\nfor i in 'banana':\n    print(i)",
+      "while loop": "While loop we can execute a set of statements as long as a condition is true.\nExample:\ni = 1\nwhile i < 6:\n    print(i)\n    i += 1",
+      "function": "A function is a block of code which only runs when it is called.\nExample:\ndef my_function():\n    print('Hello from a function')\n\nmy_function()",
+      "array": "An array is a special variable, which can hold more than one value at a time."
+      
     },
     "buttons": {
       "html_button": "🖍 HTML",
