@@ -80,8 +80,8 @@ The HTML element is everything from the start tag to the end tag:
         🔸 what is algorithms 🚀?
 
     🎯 About HTML:                                                🎯 About CSS:
-        🔹 /structure :Structure HTML                       🔹 What is flexbox ?                                                                                                                  
-        🔹 /table :Table of HTML                                  🔹 What is grid ?                                               
+        🔹 Structure HTML                       🔹 What is flexbox ?                                                                                                                  
+        🔹 Table of HTML                                       🔹 What is grid ?                                               
         🔹 Element of HTML                                          🔹 Class & ID                                          
         🔹 Code block                                                      🔹 What is gap?
         🔹 HTML Heading & Paragrap                       🔹 Rule CSS
