@@ -27,8 +27,9 @@
       "while loop": "While loop we can execute a set of statements as long as a condition is true.\nExample:\ni = 1\nwhile i < 6:\n    print(i)\n    i += 1",
       "function": "A function is a block of code which only runs when it is called.\nExample:\ndef my_function():\n    print('Hello from a function')\n\nmy_function()",
       "array": "An array is a special variable, which can hold more than one value at a time."
-      
+
     },
+
     "buttons": {
       "html_button": "🖍 HTML",
       "css_button": "🎨 CSS",
@@ -39,6 +40,7 @@
       "more_button": "❓ More",
       "help_button": "Help"
   },
+  
     "commands": {
       "/info": "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia.",
       "/status": "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅",
