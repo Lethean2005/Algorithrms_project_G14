@@ -57,6 +57,8 @@ def condiction_1 (message1):
         return "id"
     elif "rule css" in text :
         return "rule css"
+    elif "how to add css" in text:
+        return "how to add css"
 
     return None  # No specific topic detected
 
@@ -72,6 +74,23 @@ def condiction_2(message2):
         return "html element"
     elif "code block" in text:
         return "code block"
+    return None
+
+#def_second_function for python
+def condiction_3(message3):
+    text = message3.text.lower()
+    if "date type" in text:
+        return "data type"
+    elif "for loop" in text:
+        return " for loop"
+    elif "while loop" in text:
+        return"while loop"
+    elif "function" in text:
+        return "function"
+    elif "array" in text:
+        return "array"
+    elif "how to add css" in text:
+        return "how to add css"
     return None
 
 # Start command handler
@@ -120,11 +139,16 @@ def handle_topic_selection(message2):
     topic = message2.text
     bot.send_message(message2.chat.id, RESPONSES[topic])
 
-
+# css
 @bot.message_handler(func=lambda message1: message1.text in ["flexbox","grid","gap","class","id","rule css"])
 def handle_topic_selection(message1):
     topic = message1.text
     bot.send_message(message1.chat.id, RESPONSES[topic])
+#  py
+@bot.message_handler(func=lambda message3: message3.text in ["data type","how to add css","for loop","while loop","function","array"])
+def handle_topic_selection(message3):
+    topic = message3.text
+    bot.send_message(message3.chat.id, RESPONSES[topic])
 
 
 # Command: /info
