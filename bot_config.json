@@ -25,9 +25,12 @@
       "for loop": "For loop we can execute a set of statements, once for each item in a list, tuple, set, etc.\nExample:\nfor i in 'banana':\n    print(i)",
       "while loop": "While loop we can execute a set of statements as long as a condition is true.\nExample:\ni = 1\nwhile i < 6:\n    print(i)\n    i += 1",
       "function": "A function is a block of code which only runs when it is called.\nExample:\ndef my_function():\n    print('Hello from a function')\n\nmy_function()",
-      "array": "An array is a special variable, which can hold more than one value at a time."
-      
-      
+      "array": "An array is a special variable, which can hold more than one value at a time.",
+      "heading": "HTML headings are titles or subtitles that you want to display on a webpage.\nExample:\n    <h1>Heading 1</h1>\n    <h2>Heading 2</h2>\n    <h3>Heading 3</h3>\n    <h4>Heading 4</h4>\n    <h5>Heading 5</h5>\n    <h6>Heading 6</h6>",
+      "paragraph": "A paragraph always starts on a new line, and is usually a block of text.\nExample:\n    <p>This is a paragraph.</p>\n    <p>This is another paragraph.</p>",
+      "padding": "Padding properties are used to generate space around an element's content, inside of any defined borders. CSS has properties for specifying the padding for each side of an element:\n\n1. padding-top\n2. padding-right\n3. padding-bottom\n4. padding-left\n\nExample:\n    .example {\n        padding: 10px; /* Sets padding on all sides */\n        padding-top: 15px; /* Sets padding only on the top */\n        padding-right: 20px; /* Sets padding only on the right */\n        padding-bottom: 25px; /* Sets padding only on the bottom */\n        padding-left: 30px; /* Sets padding only on the left */\n    }",
+      "margin": "Margin properties are used to create space around elements, outside of any defined borders. CSS has properties for specifying the margin for each side of an element:\n\n1. margin-top\n2. margin-right\n3. margin-bottom\n4. margin-left\n\nExample:\n    .example {\n        margin: 10px; /* Sets margin on all sides */\n        margin-top: 15px; /* Sets margin only on the top */\n        margin-right: 20px; /* Sets margin only on the right */\n        margin-bottom: 25px; /* Sets margin only on the bottom */\n        margin-left: 30px; /* Sets margin only on the left */\n    }",
+      "string": "Strings in Python are surrounded by either single quotation marks or double quotation marks.\n\nExample:\n    'hello' is the same as \"hello\".\n\nBoth are valid ways to create a string in Python, and they can be used interchangeably. However, it's common to use one type consistently within a project for readability."
     },
     "buttons": {
       "html_button": "🖍 HTML",
