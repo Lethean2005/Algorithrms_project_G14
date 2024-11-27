@@ -17,7 +17,7 @@
       "element": "An HTML element is defined by a start tag, some content, and an end tag:\n\n<tagname>Content goes here...</tagname>\nThe HTML element is everything from the start tag to the end tag.",
       "structure": "<!DOCTYPE html>\n<html>\n<head>\n    <title>Page Title</title>\n</head>\n<body>\n    <!-- Page content goes here -->\n</body>\n</html>",
       "table": "<table>\n<thead>\n    <tr>\n        <th>Header 1</th>\n        <th>Header 2</th>\n        <th>Header 3</th>\n    </tr>\n</thead>\n<tbody>\n    <tr>\n        <td>Row 1, Column 1</td>\n        <td>Row 1, Column 2</td>\n        <td>Row 1, Column 3</td>\n    </tr>\n    <tr>\n        <td>Row 2, Column 1</td>\n        <td>Row 2, Column 2</td>\n        <td>Row 2, Column 3</td>\n    </tr>\n</tbody>\n</table>",
-      "more": "Here are the available commands:\n- /start - Start the bot\n- /info - Information about the bot\n- /status - Check the bot's status\n- /video - Watch video\n- /weather - Check weather",
+      "more": "Here are the available commands:\n- /start - Start the bot\n- /info - Information about the bot\n- /video - Watch video\n- /weather - Check weather",
       "code block": "Ordered list:\n<pre>\n<ol>\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ol>\nUnordered list:\n<ul>\n  <li>Item A</li>\n  <li>Item B</li>\n</ul>\n</pre>",
       "rule css": "A CSS rule is a statement that defines the style properties for a particular HTML element or group of elements. It consists of two main parts:\n\n1. Selector: Specifies which HTML elements the rule applies to.\n\n2. Declaration Block: Contains one or more property-value pairs that define the style.",
       "how to add css": "There are three ways of inserting a style sheet:\n1. External CSS\n2. Internal CSS\n3. Inline CSS",
@@ -40,8 +40,6 @@
   },
     "commands": {
       "/info": "🤖 A Telegram Chat Bot is a software application that operates on the Telegram messaging platform, designed to automate tasks, provide services, or engage users through text or multimedia.",
-      "/status": "The status of a Telegram bot generally refers to its activity, health, or operational state. A bot's status helps users and developers understand its current functionality and any potential issues. ✅",
-      "/video": "https://www.youtube.com/playlist?list=PL938URpgZ7qYQrfk-HHvzYJMsd576-P66",
       "/weather": "Check weather functionality."
   },
     "default_city": "Phnom Penh",
